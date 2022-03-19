@@ -1,0 +1,48 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Language" content="ja">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes,">
+	<title>SmaPri Sample - html</title>
+</head>
+
+<script language="JavaScript" type="text/javascript">
+	// 発行処理
+	function requestOutput() {
+		// サンプルが配置されているフォルダパスを取得
+		var myPath = location.href;
+		var dir_path = myPath.substring(0, myPath.lastIndexOf('/'));
+
+		// フォーマットファイル指定
+		var formatfile = dir_path + "/Sample.spfmtz"; // サーバ上に配置した場合
+
+		// リクエストURL生成
+		var url = "smapri:/Format/Print?";
+		url += "__format_archive_url=" + encodeURIComponent(formatfile); // フォーマットファイル指定
+		url += "&__format_archive_update=update"; // フォーマット更新確認：更新する(エラー通知あり)
+		url += "&__format_id_number=1"; // フォーマットNo指定
+		url += "&" + encodeURIComponent("Text") + "=" + encodeURIComponent(document.MainForm.trade_name.value);
+		url += "&" + encodeURIComponent("Price") + "=" + encodeURIComponent(document.MainForm.price.value);
+		url += "&" + encodeURIComponent("Barcode") + "=" + encodeURIComponent(document.MainForm.barcode.value);
+		url += "&" + encodeURIComponent("(発行枚数)") + "=" + encodeURIComponent(document.MainForm.quantity.value); // 入力項目へのデータセット
+		url += "&__success_redirect_url=" + encodeURIComponent(dir_path + "/SmaPriSample_OK.html"); // OK時戻り先
+		url += "&__failure_redirect_url=" + encodeURIComponent(dir_path + "/SmaPriSample_NG.html"); // NG時戻り先
+
+		location.href = url;
+	}
+</script>
+
+<body>
+	<font color="#0000FF" size="4">SmaPri Sample html</font>
+	<hr>
+	<form name="MainForm">
+		<p>Text:<input type="text" name="trade_name" size="10" maxlength="10" value="PrintTest"></p>
+		<p>Price:<input type="number" name="price" size="6" maxlength="6" value="1980"></p>
+		<p>Barcode:<input type="number" name="barcode" size="4" maxlength="4" value="9999"></p>
+		<p>発行枚数:<input type="number" name="quantity" size="4" maxlength="4" value="1"></p>
+		<p><input type="button" value="  Print  " onclick="requestOutput()"></p>
+	</form>
+</body>
+
+</html>

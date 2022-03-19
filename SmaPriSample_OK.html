@@ -1,0 +1,24 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Language" content="ja">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes,">
+	<title>SmaPri Sample - html - OK</title>
+	<script language="JavaScript" type="text/javascript">
+		window.onload = function htmlload() {
+			message.innerText = decodeURIComponent(location.search.substring(1));
+		}
+	</script>
+</head>
+
+<body>
+	<font color="#0000FF" size="4">SmaPri Sample html</font>
+	<hr>
+	発行完了
+	<p>Response:
+	<div id="message"></div>
+	</p>
+</body>
+
+</html>
